@@ -1,0 +1,29 @@
+﻿@model Branch
+
+@if (TempData["message"] != null)
+{
+    <script src=" /lib/jquery//dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData["message"]');
+    </script>
+}
+
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label>Branch Name</label>
+        <input type="text" class="form-control" asp-for="name" required />
+    </div>
+    <div class="form-group">
+        <label>Credit Limit (in Rupees)</label>
+        <input type="number" class="form-control" asp-for="creditlimit" required/>
+        <span asp-validation-for="creditlimit" style="color:red"></span>
+    </div>
+    <div class="form-group">
+        <label>Debit Limit (in Rupees)</label>
+        <input type="number" class="form-control" asp-for="debitlimit" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Branch</button>
+</form>
+

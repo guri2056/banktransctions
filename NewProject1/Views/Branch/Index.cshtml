@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Branch>
+
+@if (TempData["message"]!=null)
+{
+    <script src=" /lib/jquery//dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+toastr.success('@TempData["message"]');
+</script>
+}
+
+<h2>Branch List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Credit Limit</th>
+            <th>Debit Limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var branch in Model)
+        {
+            <tr>
+                <td>@branch.name</td>
+                <td>@branch.creditlimit</td>
+                <td>@branch.debitlimit</td>
+                </tr>
+        }
+        
+        </tbody>
+        </table>
+<a href="@Url.Action("Create", "Branch")" class="btn btn-primary">Add New Branch</a>

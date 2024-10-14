@@ -1,0 +1,43 @@
+﻿<form asp-action="Filter" method="get">
+    <div class="form-group">
+        <label>From Date</label>
+        <input type="date" class="form-control" name="fromDate" />
+    </div>
+    <div class="form-group">
+        <label>To Date</label>
+        <input type="date" class="form-control" name="toDate" />
+    </div>
+    <div class="form-group">
+        <label>Transaction Type</label>
+        <select class="form-control" name="isCredit">
+            <option value="">All</option>
+            <option value="true">Credit</option>
+            <option value="false">Debit</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Transaction Type</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Branch.name</td>
+                <td>@(item.IsCredit ? "Credit" : "Debit")</td>
+                <td>@item.TransactionDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

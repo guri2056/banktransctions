@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Transaction>
+@if (TempData["message"] != null)
+{
+    <script src=" /lib/jquery//dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+     toastr.success('@TempData["message"]');
+    </script>
+}
+
+<h2>Transaction List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Branch Name</th>
+            <th>Transaction Type</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.Branch.name</td>
+                <td>@(transaction.IsCredit ? "Credit" : "Debit")</td>
+                <td>@transaction.TransactionDate.ToString("yyyy-MM-dd")</td>
+                <td>@transaction.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>Total Amount:@ViewBag.TotalAmount</p>
+<a href="@Url.Action("Create", "Transaction")" class="btn btn-primary">Add New Transaction</a>
